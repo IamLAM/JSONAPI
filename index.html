@@ -88,6 +88,42 @@
     <div id="data">
 
     </div>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('sendMessage').onclick = function() {
+
+                var userName = document.getElementById('name').value;
+                // Add your code below this line
+
+                req = new XMLHttpRequest();
+                req.open("POST", 'data.json', true);
+                req.setRequestHeader('Content-Type', 'text/plain');
+                req.onreadystatechange = function() {
+                    if (req.readyState == 4 && req.status == 200) {
+                        document.getElementsByClassName('message')[0].innerHTML = req.responseText;
+                    }
+                };
+                req.send(userName);
+                // Add your code above this line
+            };
+        });
+    </script>
+
+
+    <p>
+        <label for="name">Your name:
+    <input type="text" id="name"/>
+  </label>
+        <button id="sendMessage">
+    Send Message
+  </button>
+    </p>
+
+
+
 </body>
 
 </html>
