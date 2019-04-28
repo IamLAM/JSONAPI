@@ -10,6 +10,8 @@
             req.onload = function() {
                 json = JSON.parse(req.responseText);
                 document.getElementsByClassName('message')[0].innerHTML = JSON.stringify(json);
+
+                console.log(json[2].codeNames[1]);
             };
 
         };
