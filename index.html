@@ -1,67 +1,93 @@
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('getMessage').onclick = function() {
-            req = new XMLHttpRequest();
-            req.open("GET", 'data.json', true);
-            req.send();
-            req.onload = function() {
-                json = JSON.parse(req.responseText);
-                var html = "";
+<!DOCTYPE html>
+<html lang="en">
 
-                json = json.filter(function(val) {
-                    return (val.id !== 1);
-                });
-                json.forEach(function(val) {
-                    html += "<div class = 'cat'>";
-                    // Add your code below this line
-                    html += "<img src = '" + val.imageLink + "' " + "alt='" + val.altText + "'>";
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Working json</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('getMessage').onclick = function() {
+                req = new XMLHttpRequest();
+                req.open("GET", 'data.json', true);
+                req.send();
+                req.onload = function() {
+                    json = JSON.parse(req.responseText);
+                    var html = "";
 
-                    // Add your code above this line
-                    html += "</div><br>";
-                });
-                document.getElementsByClassName('message')[0].innerHTML = html;
+                    json = json.filter(function(val) {
+                        return (val.id !== 1);
+                    });
+                    json.forEach(function(val) {
+                        html += "<div class = 'cat'>";
+                        // Add your code below this line
+                        html += "<img src = '" + val.imageLink + "' " + "alt='" + val.altText + "'>";
+
+                        // Add your code above this line
+                        html += "</div><br>";
+                    });
+                    document.getElementsByClassName('message')[0].innerHTML = html;
+                };
             };
-        };
 
-        console.log(json[2].codeNames[1]);
-    });
-</script>
-<style>
-    body {
-        text-align: center;
-        font-family: "Helvetica", sans-serif;
-    }
-    
-    h1 {
-        font-size: 2em;
-        font-weight: bold;
-    }
-    
-    .box {
-        border-radius: 5px;
-        background-color: #eee;
-        padding: 20px 5px;
-    }
-    
-    button {
-        color: white;
-        background-color: #4791d0;
-        border-radius: 5px;
-        border: 1px solid #4791d0;
-        padding: 5px 10px 8px 10px;
-    }
-    
-    button:hover {
-        background-color: #0F5897;
-        border: 1px solid #0F5897;
-    }
-</style>
-<h1>Using a JSON</h1>
-<p class="message box">
-    The message will go here
-</p>
-<p>
-    <button id="getMessage">
+            console.log(json[2].codeNames[1]);
+        });
+    </script>
+    <style>
+        body {
+            text-align: center;
+            font-family: "Helvetica", sans-serif;
+        }
+        
+        h1 {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        
+        .box {
+            border-radius: 5px;
+            background-color: #eee;
+            padding: 20px 5px;
+        }
+        
+        button {
+            color: white;
+            background-color: #4791d0;
+            border-radius: 5px;
+            border: 1px solid #4791d0;
+            padding: 5px 10px 8px 10px;
+        }
+        
+        button:hover {
+            background-color: #0F5897;
+            border: 1px solid #0F5897;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Using a JSON</h1>
+    <p class="message box">
+        The message will go here
+    </p>
+    <p>
+        <button id="getMessage">
       Get Message
     </button>
-</p>
+    </p>
+    <script>
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                document.getElementById('data').innerHTML = "latitude: " + position.coords.latitude + "<br>longitude: " + position.coords.longitude;
+            });
+        }
+    </script>
+    <h4>You are here:</h4>
+    <div id="data">
+
+    </div>
+</body>
+
+</html>
