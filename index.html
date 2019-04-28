@@ -3,7 +3,14 @@
 
         document.getElementById("getMessage").onclick = function() {
 
-            document.getElementsByClassName("message")[0].textContent = "Here is the message";
+            //document.getElementsByClassName("message")[0].textContent = "Here is the message";
+            req = new XMLHttpRequest();
+            req.open("GET", 'data.json', true);
+            req.send();
+            req.onload = function() {
+                json = JSON.parse(req.responseText);
+                document.getElementsByClassName('message')[0].innerHTML = JSON.stringify(json);
+            };
 
         };
     });
