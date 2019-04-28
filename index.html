@@ -7,6 +7,10 @@
             req.onload = function() {
                 json = JSON.parse(req.responseText);
                 var html = "";
+
+                json = json.filter(function(val) {
+                    return (val.id !== 1);
+                });
                 json.forEach(function(val) {
                     html += "<div class = 'cat'>";
                     // Add your code below this line
