@@ -1,29 +1,25 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-
-        document.getElementById("getMessage").onclick = function() {
-
-            //document.getElementsByClassName("message")[0].textContent = "Here is the message";
+        document.getElementById('getMessage').onclick = function() {
             req = new XMLHttpRequest();
             req.open("GET", 'data.json', true);
             req.send();
             req.onload = function() {
                 json = JSON.parse(req.responseText);
-                //document.getElementsByClassName('message')[0].innerHTML = JSON.stringify(json);
                 var html = "";
-
                 json.forEach(function(val) {
-                    var keys = Object.keys(val);
                     html += "<div class = 'cat'>";
-                    keys.forEach(function(key) {
-                        html += "<strong>" + key + "</strong>: " + val[key] + "<br>";
-                    });
+                    // Add your code below this line
+                    html += "<img src = '" + val.imageLink + "' " + "alt='" + val.altText + "'>";
+
+                    // Add your code above this line
                     html += "</div><br>";
                 });
-                console.log(json[2].codeNames[1]);
+                document.getElementsByClassName('message')[0].innerHTML = html;
             };
-
         };
+
+        console.log(json[2].codeNames[1]);
     });
 </script>
 <style>
